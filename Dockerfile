@@ -10,8 +10,7 @@ ENV TERM=xterm \
 RUN rm /bin/sh && \
     ln -s /bin/bash /bin/sh && \
     sed -i "s/mesg n/tty -s \&\& mesg n/" /root/.profile
-RUN sed -i "s/archive.ubuntu.com/mirrors.163.com/" /etc/apt/sources.list && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y --no-install-recommends locales && \
     echo 'zh_CN.UTF-8 UTF-8' > /etc/locale.gen && \
     locale-gen && \
