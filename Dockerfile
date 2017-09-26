@@ -32,13 +32,13 @@ ENV LANGUAGE=zh_CN.UTF-8 \
     GID=1000 \
     UID=1000
 
-ADD entrypoint.sh /
-RUN chmod +x /entrypoint.sh && \
-    groupadd -o -g $GID netease && \
+RUN groupadd -o -g $GID netease && \
     groupmod -o -g $AUDIO_GID audio && \
     useradd -d "/home/netease" -m -o -u $UID -g netease -G audio,video netease && \
     mkdir -p "/home/netease/Music/.config" "/home/netease/Music/.cache" "/home/netease/.config" "/home/netease/.cache" && \
     ln -s "/home/netease/Music/.config" "/home/netease/.config/netease-cloud-music" && \
     ln -s "/home/netease/Music/.cache" "/home/netease/.cache/netease-cloud-music"
 
+ADD entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
