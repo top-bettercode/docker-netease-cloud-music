@@ -12,7 +12,7 @@ if [ ! -d "/home/netease/Music/.cache" ]; then
     mkdir -p "/home/netease/Music/.cache"
 fi
 
-chown -R netease:netease /home/netease
+chown -R netease:netease /home/netease/Music
 
 su netease <<EOF
     echo "启动 $APP"
