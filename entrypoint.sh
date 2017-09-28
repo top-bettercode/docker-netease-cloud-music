@@ -9,13 +9,14 @@ if [ ! -d "/home/netease/Music/.cache" ]; then
     mkdir -p "/home/netease/Music/.cache"
 fi
 
-if [ $UID != $(echo `id -u netease`) -o $GID != $(echo `id -g netease`) ]; then
+if [ $GID != $(echo `id -g netease`) ]; then
     groupmod -o -g $GID netease
-    if [ $UID != $(echo `id -u netease`) ]; then
-        usermod -o -u $UID netease
-    fi
-    chown -R netease:netease /home/netease/Music
 fi
+if [ $UID != $(echo `id -u netease`) ]; then
+    usermod -o -u $UID netease
+fi
+chown netease:netease /home/netease/Music
+
 
 su netease <<EOF
     echo "启动 $APP"
