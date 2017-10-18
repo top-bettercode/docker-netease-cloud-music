@@ -16,7 +16,7 @@ RUN apt-get update && \
     locale-gen && \
     echo -e 'LANG="zh_CN.UTF-8"\nLANGUAGE="zh_CN:zh"\n' > /etc/default/locale && \
     source /etc/default/locale && \
-    apt-get install -y --no-install-recommends fonts-wqy-microhei dbus-x11 wget && \
+    apt-get install -y --no-install-recommends fonts-wqy-microhei dbus-x11 wget libcanberra-gtk-module ca-certificates && \
     wget -O /tmp/netease-cloud-music.deb http://s1.music.126.net/download/pc/netease-cloud-music_1.0.0-2_amd64_ubuntu16.04.deb && \
     apt-get install -y --no-install-recommends /tmp/netease-cloud-music.deb && \
     apt-get -y remove wget && \
@@ -34,10 +34,7 @@ ENV LANGUAGE=zh_CN.UTF-8 \
 
 RUN groupadd -o -g $GID netease && \
     groupmod -o -g $AUDIO_GID audio && \
-    useradd -d "/home/netease" -m -o -u $UID -g netease -G audio,video netease && \
-    mkdir -p "/home/netease/Music/.config" "/home/netease/Music/.cache" "/home/netease/.config" "/home/netease/.cache" && \
-    ln -s "/home/netease/Music/.config" "/home/netease/.config/netease-cloud-music" && \
-    ln -s "/home/netease/Music/.cache" "/home/netease/.cache/netease-cloud-music"
+    useradd -d "/home/netease" -m -o -u $UID -g netease -G audio netease
 
 ADD entrypoint.sh /
 RUN chmod +x /entrypoint.sh
