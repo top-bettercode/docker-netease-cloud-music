@@ -1,7 +1,5 @@
 #!/bin/bash
 
-groupmod -o -g $AUDIO_GID audio
-
 if [ $GID != $(echo `id -g netease`) ]; then
     groupmod -o -g $GID netease
 fi
