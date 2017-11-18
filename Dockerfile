@@ -4,7 +4,8 @@ LABEL name=netease-cloud-music \
     release=1 \
     maintainer='Peter Wu <piterwu@outlook.com>'
 
-RUN apt-get update && \
+RUN echo 'deb http://mirrors.kernel.org/deepin panda main' > /etc/apt/sources.list && \
+    apt-get update && \
     apt-get install -y --no-install-recommends locales && \
     echo 'zh_CN.UTF-8 UTF-8' > /etc/locale.gen && \
     locale-gen && \
