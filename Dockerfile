@@ -20,11 +20,13 @@ ENV LANGUAGE=zh_CN.UTF-8 \
     LANG=zh_CN.UTF-8 \
     TZ=UTC-8 \
     APP=netease-cloud-music \
+    AUDIO_GID=63 \
     GID=1000 \
     UID=1000
 
 RUN groupadd -o -g $GID netease && \
-    useradd -d "/home/netease" -m -o -u $UID -g netease netease
+    groupmod -o -g $AUDIO_GID audio && \
+    useradd -d "/home/netease" -m -o -u $UID -g netease -G audio netease
 
 ADD entrypoint.sh /
 RUN chmod +x /entrypoint.sh
