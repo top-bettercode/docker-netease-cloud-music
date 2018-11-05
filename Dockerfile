@@ -5,7 +5,6 @@ LABEL name=netease-cloud-music \
     maintainer='Peter Wu <piterwu@outlook.com>'
 
 RUN apt-get update && \
-    apt --fix-broken -y install && \
     apt-get install -y --no-install-recommends locales && \
     echo 'zh_CN.UTF-8 UTF-8' > /etc/locale.gen && \
     locale-gen && \
