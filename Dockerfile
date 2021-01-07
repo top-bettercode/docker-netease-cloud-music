@@ -1,7 +1,7 @@
-FROM bestwu/deepin:panda
+FROM bestwu/deepin:stable
 LABEL name=netease-cloud-music \
-    version=1.1.0 \
-    release=1 \
+    version=1.2.0 \
+    release=2 \
     maintainer='Peter Wu <piterwu@outlook.com>'
 
 RUN apt-get update && \
